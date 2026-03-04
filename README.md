@@ -36,6 +36,7 @@ halt                                     # halt the machine
 help                                     # this help
 info                                     # device information
 kem                                      # benchmark post-quantum KEM
+ls              (<path>)?                # list directory contents
 metrics                                  # show runtime metrics
 peek            <hex addr> <size>        # memory display (use with caution)
 poke            <hex addr> <hex value>   # memory write   (use with caution)

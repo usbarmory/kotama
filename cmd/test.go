@@ -77,6 +77,7 @@ func testCmd(_ *shell.Interface, _ []string) (_ string, _ error) {
 
 	spawn(timerTest)
 	spawn(sleepTest)
+	spawn(fsTest)
 	spawn(rngTest)
 	spawn(kemTest)
 
