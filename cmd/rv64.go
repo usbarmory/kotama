@@ -36,15 +36,11 @@ func infoCmd(_ *shell.Interface, _ []string) (string, error) {
 	txtStart, txtEnd := runtime.TextRegion()
 	datStart, datEnd := runtime.DataRegion()
 
-	name, freq := Target()
-
+	fmt.Fprintf(&res, "CPU ..........: rv64%s\n", fu540.RV64.Features().Extensions)
 	fmt.Fprintf(&res, "Runtime ......: %s %s/%s GOMAXPROCS=%d\n", runtime.Version(), runtime.GOOS, runtime.GOARCH, runtime.GOMAXPROCS(-1))
 	fmt.Fprintf(&res, "RAM ..........: %#08x-%#08x (%d MiB)\n", ramStart, ramEnd, (ramEnd-ramStart)/(1024*1024))
 	fmt.Fprintf(&res, "Text .........: %#08x-%#08x (%d KiB)\n", txtStart, txtEnd, (txtEnd-txtStart)/(1024))
 	fmt.Fprintf(&res, "Data .........: %#08x-%#08x (%d KiB)\n", datStart, datEnd, (datEnd-datStart)/(1024))
-	fmt.Fprintf(&res, "SoC ..........: %s\n", name)
-	fmt.Fprintf(&res, "Extensions ...: %s\n", fu540.RV64.Features().Extensions)
-	fmt.Fprintf(&res, "Frequency ....: %v MHz\n", float32(freq)/1e6)
 
 	return res.String(), nil
 }
