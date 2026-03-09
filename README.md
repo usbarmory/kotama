@@ -15,9 +15,8 @@ constrained targets.
 Building
 --------
 
-This project requires the [experimental tamago1.26.0-73608-softfloat
-branch](https://github.com/abarisani/tamago-go/tree/tamago1.26.0-73608-softfloat)
-of the `GOOS=tamago` compiler.
+This project requires the experimental `GOOS=tamago` compiler branch
+[tamago1.26.0-73608-softfloat branch](https://github.com/abarisani/tamago-go/tree/tamago1.26.1-73608-softfloat).
 
 You can build, and run in QEMU, as follows:
 
@@ -48,13 +47,11 @@ test                                     # launch tests
 uptime                                   # show system running time
 
 > info
-Runtime ......: go1.26.0 tamago/riscv64 GOMAXPROCS=1
+CPU ..........: rv64cfimsu
+Runtime ......: go1.26.1 tamago/riscv64 GOMAXPROCS=1
 RAM ..........: 0x80000000-0x80600000 (6 MiB)
-Text .........: 0x80010000-0x800ee2c8 (888 KiB)
-Data .........: 0x80236180-0x8026a760 (209 KiB)
-SoC ..........: FU540
-Extensions ...: cfimsu
-Frequency ....: 999.9 MHz
+Text .........: 0x80010000-0x800f1de8 (903 KiB)
+Data .........: 0x8023e300-0x802729e0 (209 KiB)
 ```
 
 License

@@ -1,11 +1,11 @@
 module github.com/usbarmory/kotama
 
-go 1.26.0
+go 1.26.1
 
-replace github.com/usbarmory/tamago => github.com/abarisani/tamago v0.0.0-20260304115819-52fafccf8a35
+replace github.com/usbarmory/tamago => github.com/abarisani/tamago v0.0.0-20260309083952-93bcf7ba1ccf
 
 require (
-	github.com/usbarmory/tamago v1.26.0
+	github.com/usbarmory/tamago v1.26.1
 	github.com/usbarmory/tamago-example v0.0.0-20260303094712-5c9feca0b482
 )
 
