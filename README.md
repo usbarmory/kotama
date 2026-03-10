@@ -16,7 +16,7 @@ Building
 --------
 
 This project requires the experimental `GOOS=tamago` compiler branch
-[tamago1.26.0-73608-softfloat branch](https://github.com/abarisani/tamago-go/tree/tamago1.26.1-73608-softfloat).
+[tamago1.26.1-73608-softfloat branch](https://github.com/abarisani/tamago-go/tree/tamago1.26.1-73608-softfloat).
 
 You can build, and run in QEMU, as follows:
 
