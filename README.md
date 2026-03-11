@@ -12,11 +12,29 @@ This is an experiment for bare metal Go unikernels, as supported by
 [TamaGo](https://github.com/usbarmory/tamago) on RISCV64 low-memory, extension
 constrained targets.
 
-Building
---------
 
 This project requires the experimental `GOOS=tamago` compiler branch
-[tamago1.26.1-73608-softfloat branch](https://github.com/abarisani/tamago-go/tree/tamago1.26.1-73608-softfloat).
+[tamago1.26.1-73608-softfloat branch](https://github.com/abarisani/tamago-go/tree/tamago1.26.1-73608-softfloat),
+such branch extends mainline [tamago](https://github.com/usbarmory/tamago/wiki)
+to support the following:
+
+  * `GOSOFT=1`: compiler build time variable to enable soft float for `riscv64`, removing
+    requirement for `ad` extensions and forcing single-threaded operation.
+
+  * `tiny`: tamago library build tag for considerable reduction of RAM allocation requirements.
+
+Building the compiler
+---------------------
+
+```
+wget https://github.com/abarisani/tamago-go/archive/refs/heads/tamago1.26.1-73608-softfloat.zip
+unzip tamago1.26.1-73608-softfloat.zip
+cd tamago-go-tamago1.26.1-73608-softfloat/src && ./all.bash
+cd ../bin && export TAMAGO=`pwd`/go
+```
+
+Building the application
+------------------------
 
 You can build, and run in QEMU, as follows:
 
