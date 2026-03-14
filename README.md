@@ -12,7 +12,6 @@ This is an experiment for bare metal Go unikernels, as supported by
 [TamaGo](https://github.com/usbarmory/tamago) on RISCV64 low-memory, extension
 constrained targets.
 
-
 This project requires the experimental `GOOS=tamago` compiler branch
 [tamago1.26.1-73608-softfloat branch](https://github.com/abarisani/tamago-go/tree/tamago1.26.1-73608-softfloat),
 such branch extends mainline [tamago](https://github.com/usbarmory/tamago/wiki)
