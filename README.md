@@ -23,6 +23,12 @@ to support the following:
 
   * `tiny`: tamago library build tag for considerable reduction of RAM allocation requirements.
 
+Supported RISC-V targets
+========================
+
+* [AI Foundry Erbium](https://github.com/aifoundry-org/erbium)
+* [SiFive FU540](https://www.qemu.org/docs/master/system/riscv/sifive_u.html)
+
 Building the compiler
 ---------------------
 
