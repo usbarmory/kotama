@@ -36,10 +36,14 @@ cd ../bin && export TAMAGO=`pwd`/go
 Building the application
 ------------------------
 
-You can build, and run in QEMU, as follows:
+You can build, and run for two separate emulated targets, as follows:
 
 ```
-./run.sh
+# AI Foundry Erbium processor
+./run-erbium_emu.sh
+
+# SiFive FU540
+./run-sifive_u.sh
 ```
 
 Operation
@@ -47,16 +51,17 @@ Operation
 
 ```
 build                                    # build information
-date                                     # show runtime date and time
+cat         <path>                       # show file contents
+date        (<time in RFC339 format>)?   # show/change runtime date and time
 exit                                     # close session
 halt                                     # halt the machine
 help                                     # this help
 info                                     # device information
 kem                                      # benchmark post-quantum KEM
-ls              (<path>)?                # list directory contents
+ls          (<path>)?                    # list directory contents
 metrics                                  # show runtime metrics
-peek            <hex addr> <size>        # memory display (use with caution)
-poke            <hex addr> <hex value>   # memory write   (use with caution)
+peek        <hex addr> <size>            # memory display (use with caution)
+poke        <hex addr> <hex value>       # memory write   (use with caution)
 rand                                     # gather 32 random bytes
 reboot                                   # reset device
 stack                                    # goroutine stack trace (current)
@@ -65,11 +70,12 @@ test                                     # launch tests
 uptime                                   # show system running time
 
 > info
-CPU ..........: rv64cfimsu
+SoC ..........: FU540 @ 999 MHz (rv64cfimsu)
 Runtime ......: go1.26.1 tamago/riscv64 GOMAXPROCS=1
 RAM ..........: 0x80000000-0x80600000 (6 MiB)
-Text .........: 0x80010000-0x800f1de8 (903 KiB)
-Data .........: 0x8023e300-0x802729e0 (209 KiB)
+Text .........: 0x80010000-0x800f5898 (918 KiB)
+Data .........: 0x80245300-0x80279c20 (210 KiB)
+Frequency ....: 999 MHz
 ```
 
 License

@@ -1,5 +1,5 @@
-github.com/abarisani/tamago v0.0.0-20260309083952-93bcf7ba1ccf h1:j8buNuYWL10MSJlf6UaBg3IG2C2kI/6/41PLRAWLdck=
-github.com/abarisani/tamago v0.0.0-20260309083952-93bcf7ba1ccf/go.mod h1:7x0kUe5eE9S1z7Pi/C9RjF8E4JHWzqnE4cKzGl0hyug=
+github.com/usbarmory/tamago v1.26.2-0.20260314155813-8415795ba901 h1:1m3Nw9x+fmb5K3qEfoN+mcJTAwOwYuIcaqT8NFUTM3M=
+github.com/usbarmory/tamago v1.26.2-0.20260314155813-8415795ba901/go.mod h1:7x0kUe5eE9S1z7Pi/C9RjF8E4JHWzqnE4cKzGl0hyug=
 github.com/usbarmory/tamago-example v0.0.0-20260303094712-5c9feca0b482 h1:+2zRkYZFWTgFrpmtZg/NUBhf+28107wyvMuhUEmHYkA=
 github.com/usbarmory/tamago-example v0.0.0-20260303094712-5c9feca0b482/go.mod h1:VATX1q6ZNz4PSQDBzvr4BpgxCVpmqTMh9vyRoxMTwno=
 golang.org/x/sys v0.41.0 h1:Ivj+2Cp/ylzLiEU89QhWblYnOE9zerudt9Ftecq2C6k=

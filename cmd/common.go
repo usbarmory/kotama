@@ -9,6 +9,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"regexp"
 	"runtime"
 	"runtime/debug"
 	"runtime/goos"
@@ -18,9 +19,12 @@ import (
 	"github.com/usbarmory/tamago-example/shell"
 )
 
-const maxBufferSize = 102400
+const maxBufferSize = 0xffff
 
-var Terminal io.ReadWriter
+var (
+	Terminal io.ReadWriter
+	IsVT100  bool
+)
 
 func init() {
 	shell.Add(shell.Cmd{
@@ -56,8 +60,10 @@ func init() {
 	shell.Add(shell.Cmd{
 		Name: "date",
 		Args: 1,
-		Help: "show runtime date and time",
-		Fn:   dateCmd,
+		Pattern: regexp.MustCompile(`^date(?: (.*))?$`),
+		Syntax:  "(<time in RFC339 format>)?",
+		Help:    "show/change runtime date and time",
+		Fn:      dateCmd,
 	})
 
 	shell.Add(shell.Cmd{
@@ -120,6 +126,16 @@ func stackallCmd(_ *shell.Interface, _ []string) (string, error) {
 }
 
 func dateCmd(_ *shell.Interface, arg []string) (res string, err error) {
+	if len(arg[0]) > 0 {
+		t, err := time.Parse(time.RFC3339, arg[0])
+
+		if err != nil {
+			return "", err
+		}
+
+		date(t.UnixNano())
+	}
+
 	return fmt.Sprintf("%s", time.Now().Format(time.RFC3339)), nil
 }
 

@@ -1,3 +1,8 @@
+// Copyright (c) The kotama Authors. All Rights Reserved.
+//
+// Use of this source code is governed by the license
+// that can be found in the LICENSE file.
+
 package main
 
 import (
@@ -7,16 +12,11 @@ import (
 	"os"
 	"runtime"
 	"runtime/debug"
-	_ "unsafe"
 
-	_ "github.com/usbarmory/kotama/cmd"
+	"github.com/usbarmory/kotama/cmd"
+
 	"github.com/usbarmory/tamago-example/shell"
-
-	"github.com/usbarmory/tamago/board/qemu/sifive_u"
 )
-
-//go:linkname ramSize runtime/goos.RamSize
-var ramSize uint = 6 << 20
 
 func init() {
 	log.SetFlags(0)
@@ -34,10 +34,10 @@ func main() {
 
 	console := &shell.Interface{
 		Banner:     banner,
-		ReadWriter: sifive_u.UART0,
+		ReadWriter: cmd.Terminal,
 	}
 
-	console.Start(true)
+	console.Start(cmd.IsVT100)
 
 	log.Printf("exit")
 }
