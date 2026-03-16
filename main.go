@@ -37,7 +37,7 @@ func main() {
 		ReadWriter: cmd.Terminal,
 	}
 
-	console.Start(cmd.IsVT100)
+	console.Start(true)
 
 	log.Printf("exit")
 }

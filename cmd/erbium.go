@@ -21,7 +21,6 @@ import (
 
 func init() {
 	Terminal = erbium.UART0
-	IsVT100  = false
 }
 
 func date(epoch int64) {

@@ -25,7 +25,6 @@ var ramSize uint = 6 << 20
 
 func init() {
 	Terminal = sifive_u.UART0
-	IsVT100  = true
 }
 
 func date(epoch int64) {

@@ -21,10 +21,7 @@ import (
 
 const maxBufferSize = 0xffff
 
-var (
-	Terminal io.ReadWriter
-	IsVT100  bool
-)
+var Terminal io.ReadWriter
 
 func init() {
 	shell.Add(shell.Cmd{
