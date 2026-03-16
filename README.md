@@ -38,6 +38,11 @@ cd tamago-go-tamago1.26.1-73608-softfloat/src && ./all.bash
 cd ../bin && export TAMAGO=`pwd`/go
 ```
 
+> [!NOTE]
+> As `GOSOFT=1` not accounted in Go build ID, it is advised to
+> `go clean -cache` before compiling for the first time with the `GOSOFT=1`
+> enabled compiler.
+
 Building the application
 ------------------------
 
