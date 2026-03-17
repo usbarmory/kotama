@@ -9,7 +9,6 @@ package cmd
 
 import (
 	"bytes"
-	"errors"
 	"fmt"
 	"runtime"
 	_ "unsafe"
@@ -52,10 +51,6 @@ func infoCmd(_ *shell.Interface, _ []string) (string, error) {
 	fmt.Fprintf(&res, "Frequency ....: %v MHz\n", freq/1e6)
 
 	return res.String(), nil
-}
-
-func rebootCmd(_ *shell.Interface, _ []string) (_ string, err error) {
-	return "", errors.New("unimplemented")
 }
 
 func Target() (name string, freq uint32) {
