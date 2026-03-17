@@ -3,7 +3,7 @@ module github.com/usbarmory/kotama
 go 1.26.1
 
 require (
-	github.com/usbarmory/tamago v1.26.2-0.20260316094948-a2a0d93b4375
+	github.com/usbarmory/tamago v1.26.2-0.20260317082551-793366c9d075
 	github.com/usbarmory/tamago-example v0.0.0-20260303094712-5c9feca0b482
 )
 

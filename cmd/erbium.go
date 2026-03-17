@@ -9,8 +9,8 @@ package cmd
 
 import (
 	"bytes"
-	"errors"
 	"fmt"
+	"regexp"
 	"runtime"
 
 	"github.com/usbarmory/tamago-example/shell"
@@ -21,6 +21,15 @@ import (
 
 func init() {
 	Terminal = erbium.UART0
+
+	shell.Add(shell.Cmd{
+		Name:    "reset",
+		Args:    1,
+		Pattern: regexp.MustCompile(`^reset(?: (cold|soft))?$`),
+		Help:    "reset system",
+		Syntax:  "(soft|warm)?",
+		Fn:      resetCmd,
+	})
 }
 
 func date(epoch int64) {
@@ -38,9 +47,9 @@ func infoCmd(_ *shell.Interface, _ []string) (string, error) {
 	txtStart, txtEnd := runtime.TextRegion()
 	datStart, datEnd := runtime.DataRegion()
 
-	name, freq := Target()
+	name, version, freq := Target()
 
-	fmt.Fprintf(&res, "SoC ..........: %s @ %v MHz (rv64%s)\n", name, freq/1e6, erbium.RV64.Features().Extensions)
+	fmt.Fprintf(&res, "SoC ..........: %s (%x) @ %v MHz (rv64%s)\n", name, version, freq/1e6, erbium.RV64.Features().Extensions)
 	fmt.Fprintf(&res, "Runtime ......: %s %s/%s GOMAXPROCS=%d\n", runtime.Version(), runtime.GOOS, runtime.GOARCH, runtime.GOMAXPROCS(-1))
 	fmt.Fprintf(&res, "RAM ..........: %#08x-%#08x (%d MiB)\n", ramStart, ramEnd, (ramEnd-ramStart)/(1024*1024))
 	fmt.Fprintf(&res, "Text .........: %#08x-%#08x (%d KiB)\n", txtStart, txtEnd, (txtEnd-txtStart)/(1024))
@@ -49,10 +58,13 @@ func infoCmd(_ *shell.Interface, _ []string) (string, error) {
 	return res.String(), nil
 }
 
-func rebootCmd(_ *shell.Interface, _ []string) (_ string, err error) {
-	return "", errors.New("unimplemented")
+func resetCmd(_ *shell.Interface, arg []string) (_ string, err error) {
+	erbium.Reset(arg[0] == "soft")
+	return
 }
 
-func Target() (name string, freq uint32) {
-	return erbium.Model(), 200000000 // TODO
+func Target() (name string, version uint32, freq uint32) {
+	name, version = erbium.Model()
+	freq = erbium.CoreFreq
+	return
 }

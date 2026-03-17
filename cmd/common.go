@@ -77,12 +77,6 @@ func init() {
 		Help: "device information",
 		Fn:   infoCmd,
 	})
-
-	shell.Add(shell.Cmd{
-		Name: "reboot",
-		Help: "reset device",
-		Fn:   rebootCmd,
-	})
 }
 
 func buildInfoCmd(_ *shell.Interface, _ []string) (string, error) {
