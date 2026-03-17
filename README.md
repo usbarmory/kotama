@@ -80,7 +80,7 @@ test                                     # launch tests
 uptime                                   # show system running time
 
 > info
-SoC ..........: Erbium (eb680000) @ 2000 MHz (rv64cfimsux)
+SoC ..........: Erbium (eb680000) @ 200 MHz (rv64cfimsux)
 Runtime ......: go1.26.1 tamago/riscv64 GOMAXPROCS=1
 RAM ..........: 0x40000000-0x41000000 (16 MiB)
 Text .........: 0x40010000-0x400f57c8 (917 KiB)

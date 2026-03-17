@@ -4,6 +4,8 @@ github.com/usbarmory/tamago v1.26.2-0.20260316094948-a2a0d93b4375 h1:0dJAUfTILPx
 github.com/usbarmory/tamago v1.26.2-0.20260316094948-a2a0d93b4375/go.mod h1:7x0kUe5eE9S1z7Pi/C9RjF8E4JHWzqnE4cKzGl0hyug=
 github.com/usbarmory/tamago v1.26.2-0.20260317082551-793366c9d075 h1:KjwVCJOOZvk35Mo3el0i+W9G563XYW3Pk8urz1NyTTo=
 github.com/usbarmory/tamago v1.26.2-0.20260317082551-793366c9d075/go.mod h1:7x0kUe5eE9S1z7Pi/C9RjF8E4JHWzqnE4cKzGl0hyug=
+github.com/usbarmory/tamago v1.26.2-0.20260317120120-216dedc0cfb3 h1:AH2NUZvdEJhmPZ+ucHRkUOz3QrplBEuslVjmsWnAMFU=
+github.com/usbarmory/tamago v1.26.2-0.20260317120120-216dedc0cfb3/go.mod h1:7x0kUe5eE9S1z7Pi/C9RjF8E4JHWzqnE4cKzGl0hyug=
 github.com/usbarmory/tamago-example v0.0.0-20260303094712-5c9feca0b482 h1:+2zRkYZFWTgFrpmtZg/NUBhf+28107wyvMuhUEmHYkA=
 github.com/usbarmory/tamago-example v0.0.0-20260303094712-5c9feca0b482/go.mod h1:VATX1q6ZNz4PSQDBzvr4BpgxCVpmqTMh9vyRoxMTwno=
 golang.org/x/sys v0.41.0 h1:Ivj+2Cp/ylzLiEU89QhWblYnOE9zerudt9Ftecq2C6k=
