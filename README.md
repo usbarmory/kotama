@@ -49,10 +49,10 @@ Building the application
 You can build, and run for two separate emulated targets, as follows:
 
 ```
-# AI Foundry Erbium processor
+# AI Foundry Erbium processor (16MB RAM)
 ./run-erbium_emu.sh
 
-# SiFive FU540
+# SiFive FU540 (6MB RAM)
 ./run-sifive_u.sh
 ```
 
@@ -73,19 +73,18 @@ metrics                                  # show runtime metrics
 peek        <hex addr> <size>            # memory display (use with caution)
 poke        <hex addr> <hex value>       # memory write   (use with caution)
 rand                                     # gather 32 random bytes
-reboot                                   # reset device
+reset       (soft|warm)?                 # reset system
 stack                                    # goroutine stack trace (current)
 stackall                                 # goroutine stack trace (all)
 test                                     # launch tests
 uptime                                   # show system running time
 
 > info
-SoC ..........: FU540 @ 999 MHz (rv64cfimsu)
+SoC ..........: Erbium (eb680000) @ 2000 MHz (rv64cfimsux)
 Runtime ......: go1.26.1 tamago/riscv64 GOMAXPROCS=1
-RAM ..........: 0x80000000-0x80600000 (6 MiB)
-Text .........: 0x80010000-0x800f5898 (918 KiB)
-Data .........: 0x80245300-0x80279c20 (210 KiB)
-Frequency ....: 999 MHz
+RAM ..........: 0x40000000-0x41000000 (16 MiB)
+Text .........: 0x40010000-0x400f57c8 (917 KiB)
+Data .........: 0x402452a0-0x40279bc0 (210 KiB)
 ```
 
 License
