@@ -26,6 +26,7 @@ Supported RISC-V targets
 ========================
 
 * [AI Foundry Erbium](https://github.com/aifoundry-org/erbium)
+* [AI Foundry ET-SoC-1](https://github.com/aifoundry-org/et-man)
 * [SiFive FU540](https://www.qemu.org/docs/master/system/riscv/sifive_u.html)
 
 Building the compiler
@@ -43,18 +44,25 @@ cd ../bin && export TAMAGO=`pwd`/go
 > `go clean -cache` before compiling for the first time with the `GOSOFT=1`
 > enabled compiler.
 
-Building the application
-------------------------
+Building and running
+--------------------
 
-You can build, and run for two separate emulated targets, as follows:
+You can build, and run the available targets as follows:
 
 ```
-# AI Foundry Erbium processor (16MB RAM)
-./run-erbium_emu.sh
+# AI Foundry Erbium processor (16MB RAM) with /opt/et/bin/erbium_emu
+./run erbium
 
-# SiFive FU540 (6MB RAM)
-./run-sifive_u.sh
+# AI Foundry ET-SoC-1 Minion Core (16MB RAM) with /opt/et/bin/sys_emu
+./run minion
+
+# SiFive FU540 (6MB RAM) with qemu-system-riscv64
+./run fu540
 ```
+
+> [!TIP]
+> Extra arguments (e.g. `-gdb` for ET emulators) can be passed and are applied
+> to the emulator command line.
 
 Operation
 =========

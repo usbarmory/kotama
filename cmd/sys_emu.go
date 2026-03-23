@@ -3,41 +3,31 @@
 // Use of this source code is governed by the license
 // that can be found in the LICENSE file.
 
-//go:build erbium_emu
+//go:build sys_emu
 
 package cmd
 
 import (
 	"bytes"
 	"fmt"
-	"regexp"
 	"runtime"
 
 	"github.com/usbarmory/tamago-example/shell"
 
-	_ "github.com/usbarmory/tamago/board/aifoundry/erbium_emu"
-	"github.com/usbarmory/tamago/soc/aifoundry/erbium"
+	"github.com/usbarmory/tamago/board/aifoundry/sys_emu"
+	"github.com/usbarmory/tamago/soc/aifoundry/etsoc1/minion"
 )
 
 func init() {
-	Terminal = erbium.UART0
-
-	shell.Add(shell.Cmd{
-		Name:    "reset",
-		Args:    1,
-		Pattern: regexp.MustCompile(`^reset(?: (cold|soft))?$`),
-		Help:    "reset system",
-		Syntax:  "(soft|warm)?",
-		Fn:      resetCmd,
-	})
+	Terminal = sys_emu.UART0
 }
 
 func date(epoch int64) {
-	erbium.RV64.SetTime(epoch)
+	minion.RV64.SetTime(epoch)
 }
 
 func uptime() (ns int64) {
-	return erbium.RV64.GetTime() - erbium.RV64.TimerOffset
+	return minion.RV64.GetTime() - minion.RV64.TimerOffset
 }
 
 func infoCmd(_ *shell.Interface, _ []string) (string, error) {
@@ -47,9 +37,9 @@ func infoCmd(_ *shell.Interface, _ []string) (string, error) {
 	txtStart, txtEnd := runtime.TextRegion()
 	datStart, datEnd := runtime.DataRegion()
 
-	name, version, freq := Target()
+	name, freq := Target()
 
-	fmt.Fprintf(&res, "SoC ..........: %s (%x) @ %v MHz (rv64%s)\n", name, version, freq/1e6, erbium.RV64.Features().Extensions)
+	fmt.Fprintf(&res, "SoC ..........: %s @ %v MHz (rv64%s)\n", name, freq/1e6, minion.RV64.Features().Extensions)
 	fmt.Fprintf(&res, "Runtime ......: %s %s/%s GOMAXPROCS=%d\n", runtime.Version(), runtime.GOOS, runtime.GOARCH, runtime.GOMAXPROCS(-1))
 	fmt.Fprintf(&res, "RAM ..........: %#08x-%#08x (%d MiB)\n", ramStart, ramEnd, (ramEnd-ramStart)/(1024*1024))
 	fmt.Fprintf(&res, "Text .........: %#08x-%#08x (%d KiB)\n", txtStart, txtEnd, (txtEnd-txtStart)/(1024))
@@ -58,13 +48,9 @@ func infoCmd(_ *shell.Interface, _ []string) (string, error) {
 	return res.String(), nil
 }
 
-func resetCmd(_ *shell.Interface, arg []string) (_ string, err error) {
-	erbium.Reset(arg[0] == "soft")
-	return
-}
+func Target() (name string, freq uint32) {
+	name = minion.Model()
+	freq = minion.CoreFreq
 
-func Target() (name string, version uint32, freq uint32) {
-	name, version = erbium.Model()
-	freq = erbium.CoreFreq
 	return
 }
