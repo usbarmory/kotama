@@ -89,7 +89,7 @@ uptime                                   # show system running time
 
 > info
 SoC ..........: Erbium (eb680000) @ 200 MHz (rv64cfimsux)
-Runtime ......: go1.26.1 tamago/riscv64 GOMAXPROCS=1
+Runtime ......: go1.26.1 tamago/riscv64 thread 0
 RAM ..........: 0x40000000-0x41000000 (16 MiB)
 Text .........: 0x40010000-0x400f57c8 (917 KiB)
 Data .........: 0x402452a0-0x40279bc0 (210 KiB)
