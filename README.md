@@ -54,7 +54,7 @@ You can build, and run the available targets as follows:
 ./run erbium
 
 # AI Foundry ET-SoC-1 Minion Core (16MB RAM) with /opt/et/bin/sys_emu
-./run minion
+./run etsoc1
 
 # SiFive FU540 (6MB RAM) with qemu-system-riscv64
 ./run fu540

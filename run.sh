@@ -7,7 +7,7 @@ if [ "$target" == "erbium" ]; then
 	GOOS=tamago GOARCH=riscv64 GOSOFT=1 GOOSPKG=github.com/usbarmory/tamago $TAMAGO build -tags erbium_emu,tiny -trimpath -ldflags "-T 0x40010000 -R 0x1000" main.go && \
 	RT0=$(nm main|grep _rt0_riscv64_tamago | cut -d' ' -f1) && \
 	/opt/et/bin/erbium_emu -elf_load main -reset_pc $RT0 -max_cycles -1 -single_thread $@
-elif [ "$target" == "minion" ]; then
+elif [ "$target" == "etsoc1" ]; then
 	set -x
 	GOOS=tamago GOARCH=riscv64 GOSOFT=1 GOOSPKG=github.com/usbarmory/tamago $TAMAGO build -tags sys_emu -trimpath -ldflags "-T 0x8000010000 -R 0x1000" main.go && \
 	RT0=$(nm main|grep _rt0_riscv64_tamago | cut -d' ' -f1) && \
@@ -25,5 +25,5 @@ elif [ "$target" == "fu540" ]; then
 	  -nographic -monitor none -semihosting -serial stdio -net none \
 	  -dtb ${PWD}/tools/qemu.dtb -bios ${PWD}/tools/sifive_u.bin -kernel main $@
 else 
-	echo "invalid target, choose: erbium, minion, fu540"
+	echo "invalid target, choose: erbium, etsoc1, fu540"
 fi
