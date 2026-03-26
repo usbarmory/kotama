@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"regexp"
 	"runtime"
+	"strconv"
 
 	"github.com/usbarmory/tamago-example/shell"
 
@@ -21,10 +22,17 @@ import (
 
 var RV64 = erbium.RV64
 
-func isr() {}
-
 func init() {
 	Terminal = erbium_emu.UART0
+
+	shell.Add(shell.Cmd{
+		Name:    "msip",
+		Args:    1,
+		Pattern: regexp.MustCompile(`^msip (\d+)$`),
+		Syntax:  "<hart>",
+		Help:    "machine-level software interrupt",
+		Fn:      ipiCmd,
+	})
 
 	shell.Add(shell.Cmd{
 		Name:    "reset",
@@ -54,6 +62,25 @@ func infoCmd(_ *shell.Interface, _ []string) (string, error) {
 	fmt.Fprintf(&res, "Data .........: %#08x-%#08x (%d KiB)\n", datStart, datEnd, (datEnd-datStart)/(1024))
 
 	return res.String(), nil
+}
+
+func isr() {
+	hart := erbium.RV64.ID()
+	defer erbium.ClearIPI(int(hart))
+
+	fmt.Printf("got IRQ on hart %d\n", hart)
+}
+
+func ipiCmd(_ *shell.Interface, arg []string) (string, error) {
+	id, err := strconv.Atoi(arg[0])
+
+	if err != nil {
+		return "", fmt.Errorf("invalid Hart ID, %v", err)
+	}
+
+	erbium.IPI(id)
+
+	return "", nil
 }
 
 func resetCmd(_ *shell.Interface, arg []string) (_ string, err error) {

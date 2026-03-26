@@ -78,6 +78,7 @@ info                                     # device information
 kem                                      # benchmark post-quantum KEM
 ls          (<path>)?                    # list directory contents
 metrics                                  # show runtime metrics
+msip        <hart>                       # machine-level software interrupt
 peek        <hex addr> <size>            # memory display (use with caution)
 poke        <hex addr> <hex value>       # memory write   (use with caution)
 rand                                     # gather 32 random bytes

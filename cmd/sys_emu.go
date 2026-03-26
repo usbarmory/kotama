@@ -60,7 +60,7 @@ func isr() {
 	hart := minion.RV64.ID()
 	defer etsoc1.ClearIPI(int(hart))
 
-	fmt.Printf("got IRQ on hart%d\n", hart)
+	fmt.Printf("got IRQ on hart %d\n", hart)
 }
 
 func ipiCmd(_ *shell.Interface, arg []string) (string, error) {

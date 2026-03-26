@@ -65,7 +65,7 @@ func isr() {
 	hart := fu540.RV64.ID()
 	defer fu540.CLINT.ClearIPI(int(hart))
 
-	log.Printf("got IRQ on hart%d\n", hart)
+	log.Printf("got IRQ on hart %d\n", hart)
 }
 
 func ipiCmd(_ *shell.Interface, arg []string) (string, error) {
