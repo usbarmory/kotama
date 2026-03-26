@@ -6,12 +6,12 @@ if [ "$target" == "erbium" ]; then
 	set -x
 	GOOS=tamago GOARCH=riscv64 GOSOFT=1 GOOSPKG=github.com/usbarmory/tamago $TAMAGO build -tags erbium_emu,tiny -trimpath -ldflags "-T 0x40010000 -R 0x1000" main.go && \
 	RT0=$(nm main|grep _rt0_riscv64_tamago | cut -d' ' -f1) && \
-	/opt/et/bin/erbium_emu -elf_load main -reset_pc $RT0 -max_cycles -1 -single_thread -minions 8 $@
+	/opt/et/bin/erbium_emu -elf_load main -reset_pc $RT0 -max_cycles -1 -single_thread -minions 1 $@
 elif [ "$target" == "etsoc1" ]; then
 	set -x
 	GOOS=tamago GOARCH=riscv64 GOSOFT=1 GOOSPKG=github.com/usbarmory/tamago $TAMAGO build -tags sys_emu -trimpath -ldflags "-T 0x8000010000 -R 0x1000" main.go && \
 	RT0=$(nm main|grep _rt0_riscv64_tamago | cut -d' ' -f1) && \
-	/opt/et/bin/sys_emu -elf_load main -reset_pc $RT0 -max_cycles -1 -single_thread -minions 8 $@
+	/opt/et/bin/sys_emu -elf_load main -reset_pc $RT0 -max_cycles -1 -single_thread -minions 1 $@
 elif [ "$target" == "fu540" ]; then
 	set -x
 	GOOS=tamago GOARCH=riscv64 GOSOFT=1 GOOSPKG=github.com/usbarmory/tamago $TAMAGO build -tags sifive_u,tiny,semihosting,linkramsize -trimpath -ldflags "-T 0x80010000 -R 0x1000" main.go && \
