@@ -1,4 +1,4 @@
-// Copyright (c) The TamaGo Authors. All Rights Reserved.
+// Copyright (c) The kotama Authors. All Rights Reserved.
 //
 // Use of this source code is governed by the license
 // that can be found in the LICENSE file.
@@ -10,24 +10,30 @@ package cmd
 import (
 	"bytes"
 	"fmt"
+	"regexp"
 	"runtime"
+	"strconv"
 
 	"github.com/usbarmory/tamago-example/shell"
 
 	"github.com/usbarmory/tamago/board/aifoundry/sys_emu"
+	"github.com/usbarmory/tamago/soc/aifoundry/etsoc1"
 	"github.com/usbarmory/tamago/soc/aifoundry/etsoc1/minion"
 )
 
+var RV64 = minion.RV64
+
 func init() {
 	Terminal = sys_emu.UART0
-}
 
-func date(epoch int64) {
-	minion.RV64.SetTime(epoch)
-}
-
-func uptime() (ns int64) {
-	return minion.RV64.GetTime() - minion.RV64.TimerOffset
+	shell.Add(shell.Cmd{
+		Name:    "msip",
+		Args:    1,
+		Pattern: regexp.MustCompile(`^msip (\d+)$`),
+		Syntax:  "<hart>",
+		Help:    "machine-level software interrupt",
+		Fn:      ipiCmd,
+	})
 }
 
 func infoCmd(_ *shell.Interface, _ []string) (string, error) {
@@ -39,14 +45,34 @@ func infoCmd(_ *shell.Interface, _ []string) (string, error) {
 
 	name, freq := Target()
 	features :=  minion.RV64.Features()
+	id := minion.RV64.ID()
 
 	fmt.Fprintf(&res, "SoC ..........: %s @ %v MHz (rv64%s)\n", name, freq/1e6, features.Extensions)
-	fmt.Fprintf(&res, "Runtime ......: %s %s/%s thread %d\n", runtime.Version(), runtime.GOOS, runtime.GOARCH, features.HartID)
+	fmt.Fprintf(&res, "Runtime ......: %s %s/%s thread %d\n", runtime.Version(), runtime.GOOS, runtime.GOARCH, id)
 	fmt.Fprintf(&res, "RAM ..........: %#08x-%#08x (%d MiB)\n", ramStart, ramEnd, (ramEnd-ramStart)/(1024*1024))
 	fmt.Fprintf(&res, "Text .........: %#08x-%#08x (%d KiB)\n", txtStart, txtEnd, (txtEnd-txtStart)/(1024))
 	fmt.Fprintf(&res, "Data .........: %#08x-%#08x (%d KiB)\n", datStart, datEnd, (datEnd-datStart)/(1024))
 
 	return res.String(), nil
+}
+
+func isr() {
+	hart := minion.RV64.ID()
+	defer etsoc1.ClearIPI(int(hart))
+
+	fmt.Printf("got IRQ on hart%d\n", hart)
+}
+
+func ipiCmd(_ *shell.Interface, arg []string) (string, error) {
+	id, err := strconv.Atoi(arg[0])
+
+	if err != nil {
+		return "", fmt.Errorf("invalid Hart ID, %v", err)
+	}
+
+	etsoc1.IPI(id)
+
+	return "", nil
 }
 
 func Target() (name string, freq uint32) {
