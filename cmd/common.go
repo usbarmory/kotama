@@ -55,8 +55,8 @@ func init() {
 	})
 
 	shell.Add(shell.Cmd{
-		Name: "date",
-		Args: 1,
+		Name:    "date",
+		Args:    1,
 		Pattern: regexp.MustCompile(`^date(?: (.*))?$`),
 		Syntax:  "(<time in RFC339 format>)?",
 		Help:    "show/change runtime date and time",

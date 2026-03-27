@@ -48,7 +48,7 @@ func infoCmd(_ *shell.Interface, _ []string) (string, error) {
 	datStart, datEnd := runtime.DataRegion()
 
 	name, freq := Target()
-	features :=  fu540.RV64.Features()
+	features := fu540.RV64.Features()
 	id := fu540.RV64.ID()
 
 	fmt.Fprintf(&res, "SoC ..........: %s @ %v MHz (rv64%s)\n", name, freq/1e6, features.Extensions)

@@ -44,10 +44,11 @@ func infoCmd(_ *shell.Interface, _ []string) (string, error) {
 	datStart, datEnd := runtime.DataRegion()
 
 	name, freq := Target()
-	features :=  minion.RV64.Features()
+	features := minion.RV64.Features()
 	id := minion.RV64.ID()
 
 	fmt.Fprintf(&res, "SoC ..........: %s @ %v MHz (rv64%s)\n", name, freq/1e6, features.Extensions)
+	fmt.Fprintf(&res, "Minions ......: %d\n", minion.Minions())
 	fmt.Fprintf(&res, "Runtime ......: %s %s/%s thread %d\n", runtime.Version(), runtime.GOOS, runtime.GOARCH, id)
 	fmt.Fprintf(&res, "RAM ..........: %#08x-%#08x (%d MiB)\n", ramStart, ramEnd, (ramEnd-ramStart)/(1024*1024))
 	fmt.Fprintf(&res, "Text .........: %#08x-%#08x (%d KiB)\n", txtStart, txtEnd, (txtEnd-txtStart)/(1024))
