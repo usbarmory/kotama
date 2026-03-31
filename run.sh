@@ -11,7 +11,7 @@ elif [ "$target" == "etsoc1" ]; then
 	set -x
 	GOOS=tamago GOARCH=riscv64 GOSOFT=1 GOOSPKG=github.com/usbarmory/tamago $TAMAGO build -tags sys_emu,linkcpuinit -trimpath -ldflags "-T 0x8000010000 -R 0x1000" main.go && \
 	RT0=$(nm main|grep _rt0_riscv64_tamago | cut -d' ' -f1) && \
-	/opt/et/bin/sys_emu -elf_load main -reset_pc $RT0 -max_cycles -1 -minions 0xff $@
+	/opt/et/bin/sys_emu -elf_load main -reset_pc $RT0 -max_cycles -1 -minions 0xffffffff $@
 elif [ "$target" == "fu540" ]; then
 	set -x
 	GOOS=tamago GOARCH=riscv64 GOSOFT=1 GOOSPKG=github.com/usbarmory/tamago $TAMAGO build -tags sifive_u,tiny,semihosting,linkramsize -trimpath -ldflags "-T 0x80010000 -R 0x1000" main.go && \

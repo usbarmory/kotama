@@ -10,10 +10,7 @@ package cmd
 import (
 	"bytes"
 	"fmt"
-	"log"
-	"regexp"
 	"runtime"
-	"strconv"
 	_ "unsafe"
 
 	"github.com/usbarmory/tamago-example/shell"
@@ -29,15 +26,6 @@ var RV64 = fu540.RV64
 
 func init() {
 	Terminal = sifive_u.UART0
-
-	shell.Add(shell.Cmd{
-		Name:    "msip",
-		Args:    1,
-		Pattern: regexp.MustCompile(`^msip (\d+)$`),
-		Syntax:  "<hart>",
-		Help:    "machine-level software interrupt",
-		Fn:      ipiCmd,
-	})
 }
 
 func infoCmd(_ *shell.Interface, _ []string) (string, error) {
@@ -59,25 +47,6 @@ func infoCmd(_ *shell.Interface, _ []string) (string, error) {
 	fmt.Fprintf(&res, "Frequency ....: %v MHz\n", freq/1e6)
 
 	return res.String(), nil
-}
-
-func isr() {
-	hart := fu540.RV64.ID()
-	defer fu540.CLINT.ClearIPI(int(hart))
-
-	log.Printf("got IRQ on hart %d\n", hart)
-}
-
-func ipiCmd(_ *shell.Interface, arg []string) (string, error) {
-	id, err := strconv.Atoi(arg[0])
-
-	if err != nil {
-		return "", fmt.Errorf("invalid Hart ID, %v", err)
-	}
-
-	fu540.CLINT.IPI(id)
-
-	return "", nil
 }
 
 func Target() (name string, freq uint32) {

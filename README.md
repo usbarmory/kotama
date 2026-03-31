@@ -83,17 +83,27 @@ peek        <hex addr> <size>            # memory display (use with caution)
 poke        <hex addr> <hex value>       # memory write   (use with caution)
 rand                                     # gather 32 random bytes
 reset       (soft|warm)?                 # reset system
+smp         <workloads> <minions>        # launch SMP test
 stack                                    # goroutine stack trace (current)
 stackall                                 # goroutine stack trace (all)
 test                                     # launch tests
 uptime                                   # show system running time
 
 > info
-SoC ..........: Erbium (eb680000) @ 200 MHz (rv64cfimsux)
+SoC ..........: ET-SoC-1 Minion Core @ 200 MHz (rv64cfimsux)
+Minions ......: 64
 Runtime ......: go1.26.1 tamago/riscv64 thread 0
-RAM ..........: 0x40000000-0x41000000 (16 MiB)
-Text .........: 0x40010000-0x400f57c8 (917 KiB)
-Data .........: 0x402452a0-0x40279bc0 (210 KiB)
+RAM ..........: 0x8000000000-0x8400000000 (16384 MiB)
+Text .........: 0x8000010000-0x80000f8be8 (930 KiB)
+Data .........: 0x800024e340-0x8000283588 (212 KiB)
+
+> smp 100 4
+launching 100 workloads on 4 minions
+hart  0 25:░░░░░░░░░░░░░░░░░░░░░░░░░
+hart  3 25:░░░░░░░░░░░░░░░░░░░░░░░░░
+hart  1 25:░░░░░░░░░░░░░░░░░░░░░░░░░
+hart  2 25:░░░░░░░░░░░░░░░░░░░░░░░░░
+Total  100 (474.35ms)
 ```
 
 License
