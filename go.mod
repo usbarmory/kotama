@@ -1,9 +1,9 @@
 module github.com/usbarmory/kotama
 
-go 1.26.2
+go 1.26.3
 
 require (
-	github.com/usbarmory/tamago v1.26.2
+	github.com/usbarmory/tamago v1.26.3
 	github.com/usbarmory/tamago-example v0.0.0-20260303094712-5c9feca0b482
 )
 

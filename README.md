@@ -13,7 +13,7 @@ This is an experiment for bare metal Go unikernels, as supported by
 constrained targets.
 
 This project requires the experimental `GOOS=tamago` compiler branch
-[tamago1.26.2-73608-softfloat branch](https://github.com/abarisani/tamago-go/tree/tamago1.26.2-73608-softfloat),
+[tamago1.26.3-73608-softfloat branch](https://github.com/abarisani/tamago-go/tree/tamago1.26.3-73608-softfloat),
 such branch extends mainline [tamago](https://github.com/usbarmory/tamago/wiki)
 to support the following:
 
@@ -33,9 +33,9 @@ Building the compiler
 ---------------------
 
 ```
-wget https://github.com/abarisani/tamago-go/archive/refs/heads/tamago1.26.2-73608-softfloat.zip
-unzip tamago1.26.2-73608-softfloat.zip
-cd tamago-go-tamago1.26.2-73608-softfloat/src && ./all.bash
+wget https://github.com/abarisani/tamago-go/archive/refs/heads/tamago1.26.3-73608-softfloat.zip
+unzip tamago1.26.3-73608-softfloat.zip
+cd tamago-go-tamago1.26.3-73608-softfloat/src && ./all.bash
 cd ../bin && export TAMAGO=`pwd`/go
 ```
 
@@ -92,7 +92,7 @@ uptime                                   # show system running time
 > info
 SoC ..........: ET-SoC-1 Minion Core @ 200 MHz (rv64cfimsux)
 Minions ......: 64
-Runtime ......: go1.26.2 tamago/riscv64 thread 0
+Runtime ......: go1.26.3 tamago/riscv64 thread 0
 RAM ..........: 0x8000000000-0x8400000000 (16384 MiB)
 Text .........: 0x8000010000-0x80000f8be8 (930 KiB)
 Data .........: 0x800024e340-0x8000283588 (212 KiB)
