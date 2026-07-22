@@ -1,7 +1,7 @@
-github.com/usbarmory/tamago v1.26.4 h1:laFvRANKgVYFHxLHjIlhqJCc3Xm+qMyab2SlUoNw6zY=
-github.com/usbarmory/tamago v1.26.4/go.mod h1:HZkb+ZkzFl8aCxAuF7exsKX+XaNM0mYG9Iv7ooX1WDY=
-github.com/usbarmory/tamago-example v0.0.0-20260605104210-c417367330dc h1:3Ye0LkIPTCyQ031JCJ+gX6E7weC+FWpn5sHom6txMWU=
-github.com/usbarmory/tamago-example v0.0.0-20260605104210-c417367330dc/go.mod h1:DKOByG0ugEA2tq9h+gQCCN4yZrfkZiKrVbUOdrE/K7Q=
+github.com/usbarmory/tamago v1.26.5 h1:k21IAFiXGmibfPn3SYx0XLNXdqDrAgXiIgKSbI5LZ1k=
+github.com/usbarmory/tamago v1.26.5/go.mod h1:HZkb+ZkzFl8aCxAuF7exsKX+XaNM0mYG9Iv7ooX1WDY=
+github.com/usbarmory/tamago-example v0.0.0-20260720090426-8fb49c2ce994 h1:suH4gM8ivgcp6Cb2saP7odOKMYC2mmwuT3Z1N5zaha0=
+github.com/usbarmory/tamago-example v0.0.0-20260720090426-8fb49c2ce994/go.mod h1:kPZ2eZ9AT83O+77h42mJqlYDFq6erH6iP2Pkz8dcUkY=
 golang.org/x/sys v0.45.0 h1:dO4czNzziLiiXplLQgBCEpCvXQ3dnkn0SdaZSYdQ+FY=
 golang.org/x/sys v0.45.0/go.mod h1:4GL1E5IUh+htKOUEOaiffhrAeqysfVGipDYzABqnCmw=
 golang.org/x/term v0.43.0 h1:S4RLU2sB31O/NCl+zFN9Aru9A/Cq2aqKpTZJ6B+DwT4=
